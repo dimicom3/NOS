@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MyApiService2.props" />
+</Project>
