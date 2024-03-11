@@ -1,0 +1,11 @@
+# editors
+*.swp
+*~
+*.sln
+*.http
+
+# build
+/build*/
+/obj
+/bin
+/Migrations
