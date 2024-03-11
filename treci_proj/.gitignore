@@ -4,6 +4,10 @@
 *.sln
 *.http
 
+obj/
+bin/
+Migrations/
+
 # build
 /build*/
 /obj
