@@ -4,7 +4,7 @@ services:
   app-demo:
     image: docker.io/library/myapiservice
     depends_on:
-      - "app_db"
+      - "appdb"
       - "message-broker"
     container_name: appmyapiservicedemo-service
     ports:
@@ -13,7 +13,7 @@ services:
       context: ./app_demo
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID =postgres;Password=postgres;Server=app_db;Port=5432;Database=SampleDriverDb;Pooling=true;
+      - ConnectionStrings__DefaultConnection=User ID =postgres;Password=postgres;Server=appdb;Port=5432;Database=SampleDriverDb;Pooling=true;
       - ASPNETCORE_URLS=http://+:80
     networks:
       - dev
@@ -21,7 +21,7 @@ services:
   app-demo2:
     image: docker.io/library/myapiservice2
     depends_on:
-      - "app_db2"
+      - "appdb2"
       - "message-broker"
     container_name: appmyapiservicedemo2-service
     ports:
@@ -30,14 +30,14 @@ services:
       context: ./app_demo2
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db2;Port=5432;Database=testDB;Pooling=true;
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=appdb2;Port=5432;Database=testDB;Pooling=true;
       - ASPNETCORE_URLS=http://+:80
     networks:
       - dev
 
-  app_db:
+  appdb:
     image: postgres:latest
-    container_name: app_db
+    container_name: appdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -50,9 +50,9 @@ services:
     networks:
       - dev
 
-  app_db2:
+  appdb2:
     image: postgres:latest
-    container_name: app_db2
+    container_name: appdb2
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

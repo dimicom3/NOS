@@ -20,6 +20,8 @@ builder.Services.AddSingleton<IMessageService, MessageService>();
 
 
 var app = builder.Build();
+using var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope();
+var context = serviceScope.ServiceProvider.GetRequiredService<ApiDbContext>();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -28,6 +30,10 @@ app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
+
+Console.WriteLine("DATABASE MIGRATE STARTS");
+context.Database.Migrate();
+Console.WriteLine("DATABASE MIGRATE END");
+
 app.Run();

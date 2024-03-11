@@ -30,7 +30,7 @@ services:
       context: ./app_demo2
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=testDB;Pooling=true;
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db2;Port=5432;Database=testDB;Pooling=true;
       - ASPNETCORE_URLS=http://+:80
     networks:
       - dev
@@ -56,11 +56,11 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=testDB
     ports:
       - "5434:5432"  # Expose a different port for the second database
     restart: always
     volumes:
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql  
       - app_data2:/var/lib/postgresql/data
     networks:
       - dev

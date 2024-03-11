@@ -95,5 +95,11 @@ channel.BasicConsume(queue: "hello",
                         consumer: consumer);
 
 app.MapControllers();
+
+
+Console.WriteLine("DATABASE MIGRATE STARTS");
+context.Database.Migrate();
+Console.WriteLine("DATABASE MIGRATE END");
+
 app.Run();
 
