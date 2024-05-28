@@ -6,14 +6,14 @@
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("DF");
-MODULE_DESCRIPTION("HELLO WORLD MODULE");
+MODULE_DESCRIPTION("PROCESS DFS MODULE");
 
 
 void dfs(struct task_struct *task){
 	struct task_struct *child;
 	struct list_head *list;
 	
-	printk(KERN_INFO "Name: %-20s State: %ld\tProcess ID: %d\n", task->comm, task->__state, task->pid);
+	printk(KERN_INFO "Name: %-20s State: %ld\tProcess ID: %d\t schedule): %d, Priority (schedule): %d\n", task->comm, task->__state, task->pid, task->prio);
 
 	list_for_each(list, &task->children){
 		child = list_entry(list, struct task_struct, sibling);
@@ -24,7 +24,7 @@ void dfs(struct task_struct *task){
 }
 
 int init_module(){
-	printk(KERN_INFO "HELLO WORLD - MODULE LOADED\n");
+	printk(KERN_INFO "PROCESS DFS - MODULE LOADED\n");
 	
 	struct task_struct *task;
 	
