@@ -26,17 +26,16 @@ public class SensorController : ControllerBase
         var payload = await _context.SensorData.ToListAsync();
         return Ok(payload);
     }
-    [HttpPost("create/{id}/{temp}/{pressure}/{humidity}/{timeC}")]
-    public async Task<IActionResult> Create(int id, float temp, float pressure, float humidity, float timeC)
+    [HttpPost("create/{temp}/{pressure}/{humidity}/{timeC}")]
+    public async Task<IActionResult> Create(float temp, float pressure, float humidity, DateTime timeC)
     {
     // Create a new SensorData object using the route parameters
         var data = new SensorData
         {
-            ID = id,
-            Temp = temp,
+            Temperature = temp,
             Pressure = pressure,
             Humidity = humidity,
-            TimeC = timeC
+            Time = timeC
         };
         _messageService.Enqueue(data.ToString());
 

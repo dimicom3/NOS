@@ -2,7 +2,6 @@ version: '3.4'
 
 services:
   app-demo:
-    image: docker.io/library/myapiservice
     depends_on:
       - "appdb"
       - "message-broker"
@@ -19,7 +18,6 @@ services:
       - dev
 
   app-demo2:
-    image: docker.io/library/myapiservice2
     depends_on:
       - "appdb2"
       - "message-broker"

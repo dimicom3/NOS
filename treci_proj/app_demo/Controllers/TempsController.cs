@@ -26,5 +26,12 @@ public class TempsController : ControllerBase
         var result = await _context.Temps.ToListAsync();
         return Ok(result);
     }
-
+    [Route("getDailyAvg")]    
+    [HttpGet]
+    public async Task<IActionResult> getDailyAvg()
+    {       
+        
+        var result = await _context.DayAvgs.ToListAsync();
+        return Ok(result);
+    }
 }

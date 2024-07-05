@@ -5,7 +5,7 @@ namespace MyApiService.Data;
 public class ApiDbContext : DbContext
 {
     public DbSet<Temp> Temps { get; set; }
-
+    public DbSet<DayAvg> DayAvgs { get; set; }
     public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
     {
         
